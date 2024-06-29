@@ -17,7 +17,7 @@ public class AllAncestor {
 		for(int i=0;i<n;i++) {
 			res.add(bfs(adj,i,n));
 		}
-		System.out.print(res);
+		//System.out.print(res);
 	}
 	
 	public static List<Integer> bfs(List<List<Integer>>adj,int src,int n){
