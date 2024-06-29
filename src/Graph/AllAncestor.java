@@ -15,30 +15,25 @@ public class AllAncestor {
 		}
 		List<List<Integer>>res=new ArrayList<>();
 		for(int i=0;i<n;i++) {
-			res.add(bfs(adj,i,n));
+			List<Integer>adjList=new ArrayList<>();
+			Set<Integer> set=new HashSet<>();
+			findAncestor(adj,i,set);
+			for(int j=0;j<n;j++) {
+				if(j==i) continue;
+				if(set.contains(j))adjList.add(j);
+			}
+			res.add(adjList);
 		}
-		//System.out.print(res);
+		System.out.print(res);
 	}
 	
-	public static List<Integer> bfs(List<List<Integer>>adj,int src,int n){
-		boolean[] visited=new boolean[n];
-		Queue<Integer>queue=new LinkedList<>();
-		queue.add(src);
-		visited[src]=true;
-		List<Integer>list=new ArrayList<>();
-		while(!queue.isEmpty()) {
-			int node=queue.poll();
-			for(int adjNode:adj.get(node)) {
-				if(!visited[adjNode]) {
-					if(!list.contains(adjNode)) {
-						list.add(adjNode);
-					}
-					queue.add(adjNode);
-				}
+	public static void findAncestor(List<List<Integer>>adj,int src,Set<Integer> set) {
+		set.add(src);
+		for(int adjNode:adj.get(src)) {
+			if(!set.contains(adjNode)) {
+				findAncestor(adj,adjNode,set);
 			}
 		}
-		Collections.sort(list);  
-		return list;
 	}
 
 }
