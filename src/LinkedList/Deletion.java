@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class DeletionAndInsertion {
+public class Deletion {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -14,14 +14,16 @@ public class DeletionAndInsertion {
 		}
 		//System.out.print(deleteNode(0,root));
 		//System.out.print(deleteHead(root));
-		System.out.print(deleteTail(root));
+		System.out.print(deleteNodeAtK(3,root));
 	}
 	
+	// delete head
 	public static ListNode deleteHead(ListNode root) {
 		root=root.next;
 		return root;
 	}
 	
+	// delete tail
 	public static ListNode deleteTail(ListNode root) {
 		ListNode temp=root;
 		
@@ -37,18 +39,42 @@ public class DeletionAndInsertion {
 		return root;
 	}
 	
-	public static ListNode deleteNode(int val,ListNode root) {
-		ListNode temp=root;
+	// delete on count
+	public static ListNode deleteNodeAtK(int k,ListNode root) {
+		if(root==null) return null;
 		
+		if(k==1) return root.next;
+		
+		ListNode temp=root;
+		ListNode prev=null;
+		int count=0;
+		while(temp !=null) {
+			count++;
+			if(count==k) {
+				prev.next=temp.next;
+				break;
+			}
+			prev=temp;
+			temp=temp.next;
+		}
+		
+		return root;
+	}
+	
+	// delete on val
+	public static ListNode deleteNode(int val,ListNode root) {
+		if(root==null) return null;
+		
+		if(root.val==val) return root.next;
+		
+		ListNode temp=root;
+		ListNode prev=null;
 		while(temp!=null) {
 			if(temp.val==val) {
-				root=root.next;
+				prev.next=temp.next;
 				break;
 			}
-			if(temp.next.val==val) {
-				temp.next=temp.next.next;
-				break;
-			}
+			prev=temp;
 			temp=temp.next;
 		}
 		return root;

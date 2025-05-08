@@ -6,7 +6,7 @@ public class AllPermuatationArray {
 		List<List<Integer>>list=new ArrayList<>();
 		int[] nums= {1,2,3};
 		solve(0,nums,list);
-		System.out.print(list);
+		System.out.println(list);
 	}
 	
 	public static void solve(int idx,int[] arr,List<List<Integer>>list){

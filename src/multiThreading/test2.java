@@ -11,5 +11,4 @@ public class test2 {
 			t1.start();
 		}
 	}
-
 }

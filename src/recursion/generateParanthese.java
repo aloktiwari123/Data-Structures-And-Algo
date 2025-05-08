@@ -14,10 +14,16 @@ public class generateParanthese {
 			list.add(op);
 			return;
 		}
+		/*
+		 * if we have open bracket we can always take them
+		 */
 		if(o!=0) {
 			String op1=op+'(';
 			solve(op1,o-1,c,list);
 		}
+		/*
+		 * if closed is greater than open we can select close
+		 */
 		if(c>o) {
 			String op2=op+')';
 			solve(op2,o,c-1,list);

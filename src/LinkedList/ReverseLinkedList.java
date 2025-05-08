@@ -1,5 +1,8 @@
 package LinkedList;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class ReverseLinkedList {
 
 	public static void main(String[] args) {
@@ -14,6 +17,8 @@ public class ReverseLinkedList {
 		}
 		System.out.println(root);
 		System.out.println(solve(root));
+		String res=Arrays.stream(new String[] {"Alok","Anmol","Manas"}).parallel().collect(Collectors.joining("/"));
+		System.out.println(res);
 	}
 	
 	public static ListNode solve(ListNode head) {
