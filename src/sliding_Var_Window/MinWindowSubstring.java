@@ -8,50 +8,34 @@ public class MinWindowSubstring {
 	
 	public static String minWindowSubstring(String s,String t) {
 		int i=0,j=0;
-		int min=Integer.MAX_VALUE;
-		HashMap<Character,Integer>map=new HashMap<>();
-		for(char ch:t.toCharArray()) {
-			map.put(ch,map.getOrDefault(ch,0)+1);
+		int minLen=Integer.MAX_VALUE;
+		int startIdx=-1;
+		int[] freq=new int[256];
+		char[] temp=t.toCharArray();
+		for(char ch:temp) {
+			freq[ch]++;
 		}
-		int count=map.size();
-		String s1=s;
+		int count=0;
+		int m=t.length();
 		char[] arr=s.toCharArray();
 		while(j<arr.length) {
-			if(map.containsKey(arr[j])) {
-				map.put(arr[j],map.get(arr[j])-1);
-				if(map.get(arr[j])==0) {
-					count=count-1;
+			if(freq[arr[j]]>0) count++;
+			freq[arr[j]]--;
+			while(count==m) {
+				if(minLen>(j-i+1)) {
+					minLen=(j-i+1);
+					startIdx=i;
 				}
-				if(count==0) {
-					//min=Math.min(min,(j-i+1));
-					if((j-i+1)<s1.length()) {
-						s1=s.substring(i,j+1);
-					}
-					while(count==0) {
-						if(map.containsKey(arr[i])) {
-							map.put(arr[i],map.get(arr[i])+1);
-							if(map.get(arr[i])>0) {
-								count++;
-							}
-						}
-						if((j-i+1)<s1.length()) {
-							s1=s.substring(i,j+1);
-						}
-						i++;
-					}
-					j++;
-				}
-				else {
-					j++;
-				}
+				freq[arr[i]]++;
+				if(freq[arr[i]]>0)count--;
+				i++;
 			}
-			else {
-				j++;
-			}	
-			
+			j++;
 		}
 		
-		return s1;
+		return startIdx==-1?"":s.substring(startIdx,startIdx+minLen);
 	}
+	
+	
 
 }

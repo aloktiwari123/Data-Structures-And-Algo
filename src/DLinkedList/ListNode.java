@@ -4,11 +4,18 @@ public class ListNode {
 
 	ListNode prev;
 	ListNode next;
-	int value;
+	String value;
 	
-	public ListNode(ListNode prev, ListNode next, int value) {
+	public ListNode(ListNode prev, ListNode next,String value) {
 		this.prev = prev;
 		this.next = next;
-		this.value = value;
+		this.value =value;
+	}
+
+	@Override
+	public String toString() {
+		return "ListNode [prev=" + prev + ", next=" + next +  ", value="+ value +"]";
 	}	
+	
+	
 }

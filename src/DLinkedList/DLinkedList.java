@@ -5,18 +5,21 @@ public class DLinkedList {
 	ListNode head;
 	ListNode tail;
 	
-	
-	public ListNode convertArrayToDL(int[] nums) {
-		head=new ListNode(null,null,nums[0]);
-		ListNode mover=head;
-		for(int i=1;i<nums.length;i++) {
-			ListNode temp=new ListNode(mover,null,nums[i]);
-			mover.next=temp;
-			mover=temp;
-		}
-		tail=mover;
-		return head;
+	DLinkedList(){
+		head=null;
+		tail=null;
 	}
+//	public ListNode convertArrayToDL(int[] nums) {
+//		head=new ListNode(null,null,nums[0]);
+//		ListNode mover=head;
+//		for(int i=1;i<nums.length;i++) {
+//			ListNode temp=new ListNode(mover,null,nums[i]);
+//			mover.next=temp;
+//			mover=temp;
+//		}
+//		tail=mover;
+//		return head;
+//	}
 	
 	public void printDL() {
 		ListNode mover=head;
@@ -45,6 +48,18 @@ public class DLinkedList {
 		prev.prev=null;
 	}
 	
+	/* add tail */
+	public void addTail(ListNode node) {
+		if(head ==null) {
+			head=node;
+			tail=node;
+		}else {
+			tail.next=node;
+			node.prev=tail;
+			tail=node;
+		}
+	}
+	
 	/* reverse  */
 	public void reverse() {
 		ListNode curr=head;
@@ -55,7 +70,7 @@ public class DLinkedList {
 			curr.next=last;
 			curr=curr.prev;
 		}
-		head=last.prev;
-		
+		head=last.prev;	
 	}
+	
 }
